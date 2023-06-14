@@ -5,10 +5,14 @@ import 'package:flutter/services.dart';
 class CustomDropDown extends StatefulWidget {
   final String label;
   final typeList;
+  final FormFieldSetter<String> onSaved;
+  final FormFieldValidator<String> validator;
 
   const CustomDropDown({
     required this.label,
     required this.typeList,
+    required this.onSaved,
+    required this.validator,
     Key? key,
   }) : super(key: key);
 
@@ -25,6 +29,9 @@ class _CustomDropDown extends State<CustomDropDown> {
     final List<String> _typeList = widget.typeList;
 
     String label = widget.label;
+    FormFieldSetter<String> onSaved = widget.onSaved;
+    FormFieldValidator<String> validator = widget.validator;
+
     return Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
       Text(
         label,
@@ -35,7 +42,9 @@ class _CustomDropDown extends State<CustomDropDown> {
       ),
       Expanded(
         flex: 0,
-        child: DropdownButton(
+        child: DropdownButtonFormField(
+          validator: validator,
+          onSaved: onSaved,
           style: TextStyle(
             color: Colors.black,
             fontSize: 15.0

@@ -69,27 +69,39 @@ class _Content extends StatelessWidget {
   }
 }
 
-class MonthlyAccount extends StatelessWidget {
+class MonthlyAccount extends StatefulWidget {
   final int monthlyExpenses;
   final int monthlyIncome;
   final String incometype;
   final String expensestype;
+  final DateTime date;
 
   const MonthlyAccount({
     required this.monthlyExpenses,
     required this.monthlyIncome,
     required this.incometype,
     required this.expensestype,
+    required this.date,
     Key? key,
   }) : super(key: key);
 
+  State<MonthlyAccount> createState() => _MonthlyAccount();
+}
+
+class _MonthlyAccount extends State<MonthlyAccount> {
+
   @override
   Widget build(BuildContext context) {
+    int monthlyExpenses = widget.monthlyExpenses;
+    int monthlyIncome = widget.monthlyIncome;
+    String incometype = widget.incometype;
+    String expensestype = widget.expensestype;
+    DateTime date = widget.date;
     return TextButton(
       onPressed: () {
         showModalBottomSheet(context: context,
           isDismissible: true,
-          builder: (_) => MonthlyAccountSheet(),
+          builder: (_) => MonthlyAccountSheet(dateTime: date,),
           isScrollControlled: true,
         );
       },

@@ -17,7 +17,7 @@ class MainCalendar extends StatelessWidget {
       locale: 'ko_kr',
       onDaySelected: onDaySelected,
       selectedDayPredicate: (date) => date.year == selectedDate.year && date.month == selectedDate.month && date.day == selectedDate.day,
-      focusedDay: DateTime.now(),
+      focusedDay: selectedDate,
       firstDay: DateTime(1800, 1, 1),
       lastDay: DateTime(3000, 12, 31),
       headerStyle: HeaderStyle(

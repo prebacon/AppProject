@@ -4,9 +4,13 @@ import 'package:flutter/services.dart';
 
 class CustomTextField extends StatelessWidget {
   final String label;
+  final FormFieldSetter<String> onSaved;
+  final FormFieldValidator<String> validator;
 
   const CustomTextField({
     required this.label,
+    required this.onSaved,
+    required this.validator,
     Key? key,
   }) : super(key: key);
 
@@ -23,6 +27,8 @@ class CustomTextField extends StatelessWidget {
       Expanded(
         flex: 0,
         child: TextFormField(
+          onSaved: onSaved,
+          validator: validator,
           cursorColor: Colors.grey,
           maxLines: 1,
           keyboardType: TextInputType.number,
